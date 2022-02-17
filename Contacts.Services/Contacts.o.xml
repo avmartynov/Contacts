@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Contacts>
+    <Contact>
+        <ContactId>1</ContactId>
+        <Name>Abc</Name>
+        <Phone>+7-903-215-00-00</Phone>
+    </Contact>
+    <Contact>
+        <ContactId>2</ContactId>
+        <Name>Xyz</Name>
+        <Phone>+7-903-215-00-01</Phone>
+    </Contact>
+    <Contact>
+        <ContactId>3</ContactId>
+        <Name>Klm</Name>
+        <Phone>+7-903-215-00-02</Phone>
+    </Contact>
+</Contacts>
