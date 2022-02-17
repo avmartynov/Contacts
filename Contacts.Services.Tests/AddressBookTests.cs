@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.IO;
 using System.Linq;
 using Contacts.Models;
@@ -10,29 +10,29 @@ namespace Contacts.Services.Tests;
 public class AddressBookTests
 {
     [Fact]
-    public void Возвращается_список_контактов()
+    public void Р’РѕР·РІСЂР°С‰Р°РµС‚СЃСЏ_СЃРїРёСЃРѕРє_РєРѕРЅС‚Р°РєС‚РѕРІ()
     {
-        var addressBook = LoadAddressBook("Contacts.xml");
+        var addressBook = LoadAddressBook("Contacts.0.xml");
 
         var persons = addressBook.GetContacts().ToList();
 
         persons.Count().Should().Be(3);
         persons[0].Name.Should().Be("Abc");
-        persons[2].Phone.Should().Be("+7-903-215-00-02");
+        persons[1].Phone.Should().Be("+7-903-215-00-02");
 
-        persons[2].Phone = "+7-903-215-00-22";
+        persons[1].Phone = "+7-903-215-00-22";
 
         var persons2 = addressBook.GetContacts().ToList();
 
         persons2.Count().Should().Be(3);
         persons2[0].Name.Should().Be("Abc");
-        persons2[2].Phone.Should().Be("+7-903-215-00-02");
+        persons2[1].Phone.Should().Be("+7-903-215-00-02");
     }
 
     [Fact]
-    public void Добавляется_новый_контакт()
+    public void Р”РѕР±Р°РІР»СЏРµС‚СЃСЏ_РЅРѕРІС‹Р№_РєРѕРЅС‚Р°РєС‚()
     {
-        File.Copy("Contacts.xml", "ContactsTest.xml", overwrite: true);
+        File.Copy("Contacts.0.xml", "ContactsTest.xml", overwrite: true);
 
         var addressBook = LoadAddressBook("ContactsTest.xml");
 
@@ -41,13 +41,13 @@ public class AddressBookTests
         var persons = addressBook.GetContacts().ToList();
 
         persons.Count().Should().Be(4);
-        persons[3].Phone.Should().Be("+7-800-250-00-01");
+        persons[2].Phone.Should().Be("+7-800-250-00-01");
     }
 
     [Fact]
-    public void Удаляется_контакт()
+    public void РЈРґР°Р»СЏРµС‚СЃСЏ_РєРѕРЅС‚Р°РєС‚()
     {
-        File.Copy("Contacts.xml", "ContactsTest.xml", overwrite: true);
+        File.Copy("Contacts.0.xml", "ContactsTest.xml", overwrite: true);
 
         var addressBook = LoadAddressBook("ContactsTest.xml");
 
@@ -61,25 +61,25 @@ public class AddressBookTests
     }
 
     [Fact]
-    public void Отклоняется_некорректный_ИД_контакта_при_удалении()
+    public void РћС‚РєР»РѕРЅСЏРµС‚СЃСЏ_РЅРµРєРѕСЂСЂРµРєС‚РЅС‹Р№_РР”_РєРѕРЅС‚Р°РєС‚Р°_РїСЂРё_СѓРґР°Р»РµРЅРёРё()
     {
-        var addressBook = LoadAddressBook("Contacts.xml");
+        var addressBook = LoadAddressBook("Contacts.0.xml");
 
         Assert.Throws<ArgumentOutOfRangeException>(() => addressBook.DeleteContact(contactId: 12));
     }
 
     [Fact]
-    public void Отклоняется_некорректный_ИД_контакта_при_изменении()
+    public void РћС‚РєР»РѕРЅСЏРµС‚СЃСЏ_РЅРµРєРѕСЂСЂРµРєС‚РЅС‹Р№_РР”_РєРѕРЅС‚Р°РєС‚Р°_РїСЂРё_РёР·РјРµРЅРµРЅРёРё()
     {
-        var addressBook = LoadAddressBook("Contacts.xml");
+        var addressBook = LoadAddressBook("Contacts.0.xml");
 
         Assert.Throws<ArgumentOutOfRangeException>(() => addressBook.DeleteContact(contactId: 12));
     }
 
     [Fact]
-    public void Изменяется_контакт()
+    public void РР·РјРµРЅСЏРµС‚СЃСЏ_РєРѕРЅС‚Р°РєС‚()
     {
-        File.Copy("Contacts.xml", "ContactsTest.xml", overwrite: true);
+        File.Copy("Contacts.0.xml", "ContactsTest.xml", overwrite: true);
 
         var addressBook = LoadAddressBook("ContactsTest.xml");
 
